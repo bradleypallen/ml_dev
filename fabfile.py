@@ -45,7 +45,7 @@ def varinfo(data='train.dat', passes=0):
 	if passes == 0:
 		local("/usr/local/src/vowpal_wabbit/utl/vw-varinfo %s" % data)
 	else:
-		local("/usr/local/src/vowpal_wabbit/utl/vw-varinfo %s -c --passes=%s" % (data, passes))
+		local("/usr/local/src/vowpal_wabbit/utl/vw-varinfo -c --passes=%s %s" % (passes, data))
 
 @task
 def validate(data='validate.dat', model='model.vw', predictions='predict.dat'):
