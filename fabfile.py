@@ -33,7 +33,7 @@ def train(data='train.dat', model='model.vw', predictions='predict.dat', passes=
 	Create a Vowpal Wabbit model by training it on a training data set.
 	"""
 	if logistic:
-		local("vw -d %s -c --passes=%s -f %s -p %s --loss-function=logistic --link=logistic" % (data, passes, model, predictions))
+		local("vw -d %s -c --passes=%s -f %s -p %s --loss_function=logistic --link=logistic" % (data, passes, model, predictions))
 	else:
 		local("vw -d %s -c --passes=%s -f %s -p %s" % (data, passes, model, predictions))
 
@@ -43,7 +43,7 @@ def varinfo(data='train.dat', passes=1, logistic=True):
 	Display the features in a Vowpal Wabbit model.
 	"""
 	if logistic:
-		local("/usr/local/src/vowpal_wabbit/utl/vw-varinfo -c --passes=%s  --loss-function=logistic %s" % (passes, data))
+		local("/usr/local/src/vowpal_wabbit/utl/vw-varinfo -c --passes=%s  --loss_function=logistic %s" % (passes, data))
 	else:
 		local("/usr/local/src/vowpal_wabbit/utl/vw-varinfo -c --passes=%s %s" % (passes, data))
 
