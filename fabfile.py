@@ -60,4 +60,4 @@ def performance(predictions='predict.dat'):
 	Display the performance of a Vowpal Wabbit model.
 	"""
 	# Load the index mappings schema
-	local("pref < %s" % predictions)
+	local("perf < %s" % predictions)
