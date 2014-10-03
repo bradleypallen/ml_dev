@@ -35,8 +35,5 @@ RUN cd /usr/local/src/vowpal_wabbit;make;make install
 RUN cd /usr/local/src;wget http://osmot.cs.cornell.edu/kddcup/perf/perf.src.tar.gz;tar xvf perf.src.tar.gz;rm perf.src.tar.gz;mv perf.src perf
 RUN cd /usr/local/src/perf;make -B perf;make install
 
-# Create home directory
-RUN mkdir -p /home/models
-
-
-
+# Install ml_dev
+RUN cd /home;git clone https://github.com/bradleypallen/ml_dev.git
