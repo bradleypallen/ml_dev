@@ -32,7 +32,7 @@ def train(data='train.dat', model='model.vw', predictions='predict.dat', passes=
 	"""
 	Create a Vowpal Wabbit model by training it on a training data set.
 	"""
-	if passes > 0:
+	if passes == 0:
 		local("vw -d %s -f %s -p %s" % (data, model, predictions))
 	else:
 		local("vw -d %s -c --passes=%s -f %s -p %s" % (data, passes, model, predictions))
@@ -42,10 +42,10 @@ def varinfo(data='train.dat', passes=0):
 	"""
 	Display the features in a Vowpal Wabbit model.
 	"""
-	if passes > 0:
-		local("vw-varinfo %s" % data)
+	if passes == 0:
+		local("/usr/local/src/vowpal_wabbit/utl/vw-varinfo %s" % data)
 	else:
-		local("vw-varinfo %s -c --passes=%s" % (data, passes))
+		local("/usr/local/src/vowpal_wabbit/utl/vw-varinfo %s -c --passes=%s" % (data, passes))
 
 @task
 def validate(data='validate.dat', model='model.vw', predictions='predict.dat'):
