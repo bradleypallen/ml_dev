@@ -55,9 +55,10 @@ def validate(data='validate.dat', model='model.vw', predictions='predict.dat'):
 	local("vw -d %s -i %s -p %s" % (data, model, predictions))
 
 @task
-def performance(predictions='predict.dat'):
+def performance(data='validate.dat', predictions='predict.dat', metric='ROC'):
 	"""
 	Display the performance of a Vowpal Wabbit model.
 	"""
-	# Load the index mappings schema
-	local("perf < %s" % predictions)
+	local("cut -d ' ' -f 1 %s | sed -e 's/^-1/0/' > gold.dat" % data)
+	local("/usr/local/src/vowpal_wabbit/utl/logistic -0 %s > probabilities.dat" % predictions)
+	local("perf -%s -files gold.dat probabilities.dat" % metric) 
