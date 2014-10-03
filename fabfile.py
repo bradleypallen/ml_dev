@@ -52,7 +52,7 @@ def validate(data='validate.dat', model='model.vw', predictions='predict.dat'):
 	"""
 	Validate a Vowpal Wabbit model by testing it on a validation data set.
 	"""
-	local("vw -d %s -t -f %s -p %s" % (data, model, predictions))
+	local("vw -d %s -i %s -p %s" % (data, model, predictions))
 
 @task
 def performance(predictions='predict.dat'):
