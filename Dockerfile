@@ -28,7 +28,7 @@ RUN pip install --upgrade virtualenv
 RUN pip install --upgrade fabric
 
 # Install vw (Vowpal Wabbit)
-RUN cd /usr/local/src;git clone https://github.com/bradleypallen/vowpal_wabbit.git
+RUN cd /usr/local/src;git clone --branch 7.7 https://github.com/JohnLangford/vowpal_wabbit.git
 RUN cd /usr/local/src/vowpal_wabbit;make;make install
 
 # Install perf
