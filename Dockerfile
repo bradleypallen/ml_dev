@@ -27,13 +27,9 @@ RUN pip install --upgrade pip
 RUN pip install --upgrade virtualenv
 RUN pip install --upgrade fabric
 
-# Install vw (Vowpal Wabbit)
-RUN cd /usr/local/src;git clone https://github.com/bradleypallen/vowpal_wabbit.git
-RUN cd /usr/local/src/vowpal_wabbit;make;make test;make install
-
-# Install perf
-RUN cd /usr/local/src;wget http://osmot.cs.cornell.edu/kddcup/perf/perf.src.tar.gz;tar xvf perf.src.tar.gz;rm perf.src.tar.gz;mv perf.src perf
-RUN cd /usr/local/src/perf;make -B perf;make install
-
 # Install ml_dev
 RUN cd /home;git clone https://github.com/bradleypallen/ml_dev.git
+
+# Install vw (Vowpal Wabbit) and perf
+# Done using CMD to avoid problems with local machine architectural differences
+CMD cd /usr/local/src;git clone https://github.com/bradleypallen/vowpal_wabbit.git;cd /usr/local/src/vowpal_wabbit;make;make test;make install;cd /usr/local/src;wget http://osmot.cs.cornell.edu/kddcup/perf/perf.src.tar.gz;tar xvf perf.src.tar.gz;rm perf.src.tar.gz;mv perf.src perf;cd /usr/local/src/perf;make -B perf;make install
