@@ -46,6 +46,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y -q curl
 # Install ml_dev
 RUN cd /home;git clone https://github.com/bradleypallen/ml_dev.git
 
+# Add /usr/local/lib to LD_LIBRARY_PATH
+ENV LD_LIBRARY_PATH $LD_LIBRARY_PATH:/usr/local/lib
+
 # Install and make vw (Vowpal Wabbit) and perf
-RUN export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib;cd /usr/local/src;git clone https://github.com/bradleypallen/vowpal_wabbit.git;cd vowpal_wabbit;./autogen.sh;./configure;make;make test;make install
-RUN export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib;cd /usr/local/src;wget http://osmot.cs.cornell.edu/kddcup/perf/perf.src.tar.gz;tar xvf perf.src.tar.gz;rm perf.src.tar.gz;mv perf.src perf;cd perf;make -B perf;make install
+RUN cd /usr/local/src;git clone https://github.com/bradleypallen/vowpal_wabbit.git;cd vowpal_wabbit;./autogen.sh;./configure;make;make test;make install
+RUN cd /usr/local/src;wget http://osmot.cs.cornell.edu/kddcup/perf/perf.src.tar.gz;tar xvf perf.src.tar.gz;rm perf.src.tar.gz;mv perf.src perf;cd perf;make -B perf;make install
